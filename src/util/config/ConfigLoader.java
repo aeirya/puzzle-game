@@ -1,6 +1,7 @@
 package util.config;
 
 import java.util.List;
+import java.util.Map;
 
 import util.file.FileLoader;
 
@@ -28,6 +29,7 @@ public class ConfigLoader extends FileLoader {
     
     private void loadConfig() {
         List <String> lines = load();
-        config = new Config( parser.parse(keys, lines) );
+        Map <String, List <String> > map = parser.parse(keys, lines);
+        config = new ConfigFactory(map).generate();
     }
 }

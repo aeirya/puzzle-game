@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
-public class FileLoader {
+public class FileLoader implements IFileLoader<String> {
 
     private final String filename;
 
