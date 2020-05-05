@@ -2,8 +2,6 @@ package app;
 
 import model.board.Board;
 import model.board.BoardFactory;
-import controller.BoardController;
-import controller.IBoardController;
 import controller.GameController;
 import util.config.Config;
 import util.config.ConfigLoader;
@@ -22,8 +20,7 @@ public class Game {
 
     public static void main(String[] args) {
         Config config = ConfigLoader.getConfig(); //singleton
-        IBoardController controller = new BoardController(7);
-        Board board = BoardFactory.getInstance().provide(config, controller).build();
+        Board board = BoardFactory.getInstance().provide(config).build();
         new Game(board);
     }
 
@@ -33,7 +30,7 @@ public class Game {
 
     private void update() {
         Waiter.doWait();
-        controller.update(board);
+        controller.update();
         if (!isFinished) update();
     }
 
@@ -42,7 +39,7 @@ public class Game {
     }
 
     private static class Waiter {
-        private static final int FPS = 60;
+        private static final int FPS = 30;
         
         private static void doWait() {
             try {

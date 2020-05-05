@@ -2,10 +2,10 @@ package model.board;
 
 import model.Location;
 import model.interfaces.Drawable;
-import test.LoudPuzzlePieceView;
 
 import java.awt.Graphics;
 import java.awt.Image;
+
 
 public class PuzzlePiece implements Drawable {
     private Image img;
@@ -17,7 +17,6 @@ public class PuzzlePiece implements Drawable {
         this.img = img;
         this.location = location;
         this.view = new PuzzlePieceView(img, location);
-        // this.view = new LoudPuzzlePieceView(img, location);
         this.pieceNumber = pieceIdentifier;
     }
 
@@ -35,10 +34,15 @@ public class PuzzlePiece implements Drawable {
 
     public void setImage(Image img) {
         this.img = img;
+        view = new PuzzlePieceView(img, location);
     }
 
     public PuzzlePiece getClone() {
         return new PuzzlePiece(img, location, pieceNumber);
+    }
+
+    public boolean isAt(int i) {
+        return location.toInt() == i;
     }
 
     public void swap(PuzzlePiece other) {
@@ -48,6 +52,10 @@ public class PuzzlePiece implements Drawable {
 
     public void draw(Graphics g) {
         view.draw(g);
+    }
+
+    public String toString() {
+        return pieceNumber + ", location: " + location.toString();
     }
 }
 

@@ -24,7 +24,8 @@ public class ConfigParser implements IParser {
     private Map<String, List <String>> splitLine (String line) {
         Map<String, String> entry = splitKeyValue(line);
         Map<String, List <String>> result = new HashMap<>();
-        entry.forEach(
+        //it actually has one member. (k,v) are the key and value of the line
+        entry.forEach( 
             (k, v) -> {
                 List<String> split = new ArrayList<>();
                 Arrays.asList(v.split(","))

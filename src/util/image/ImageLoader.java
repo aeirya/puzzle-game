@@ -1,13 +1,12 @@
 package util.image;
 
-import java.util.ArrayList;
+import util.file.IFileLoader;
+import java.util.Arrays;
 import java.util.List;
 import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
-
 import javax.imageio.ImageIO;
-import util.file.IFileLoader;
 
 public class ImageLoader implements IFileLoader<Image> {
 
@@ -28,15 +27,30 @@ public class ImageLoader implements IFileLoader<Image> {
     }
 
     public List<Image> load() {
-        List<Image> result = new ArrayList<>();
-        filenames.forEach(path -> result.add(readImage(prefix + path)));
-        return result;
+        Image[] result = new Image[9];
+        filenames.forEach(
+            path ->
+                result [n(path)] = readImage(prefix + path)
+            );
+
+        return Arrays.asList(result);
+    }
+
+    /** finds the number of the piece */
+    private int n(String path) {
+        try {
+            return Integer.parseInt( path.split("\\.")[0] );
+        }
+        catch(Exception ex) {
+            return 0; //should be careful in case we want to change the missing piece *
+        }
     }
 
     private Image readImage(String filename) {
         try {
+            File file = new File(filename);
             return ImageIO.read(
-                new File(filename)
+                file
             );
         } catch(IOException ex) {
             return null;

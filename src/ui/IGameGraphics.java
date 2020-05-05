@@ -19,6 +19,9 @@ public interface IGameGraphics extends Updatable <Drawable> , Listener {
     }
     
     static Dimension getScreenSize() {
-        return Toolkit.getDefaultToolkit().getScreenSize();
+        return new Dimension(
+            Toolkit.getDefaultToolkit().getScreenSize().width/2 ,
+            Toolkit.getDefaultToolkit().getScreenSize().height/2
+        );
     }
 }

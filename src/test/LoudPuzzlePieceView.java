@@ -14,11 +14,11 @@ public class LoudPuzzlePieceView extends PuzzlePieceView {
     @Override
     public void draw(java.awt.Graphics g) {
         super.draw(g);
-        System.out.println(
-            "image: " + image.toString() +
-            "location: " + loc + 
-            "size: " + getSize().toString()
-        );
+        // System.out.println(
+        //     "image: " + image.toString() +
+        //     "location: " + loc + 
+        //     "size: " + getSize().toString()
+        // )
     }
 
 }

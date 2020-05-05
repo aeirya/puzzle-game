@@ -7,7 +7,14 @@ import model.interfaces.Movable;
 public interface IBoardController extends Movable, ICommandReceiver {
 
     int getMissingPiece();
-    boolean isMissing(int i);
+
+    default void moveHorizontally(int i) {
+        move(i);
+    }
+
+    default void moveVertically(int i) {
+        move(3*i);
+    }
 
     default void receive(ICommand command) {
         command.act(this);

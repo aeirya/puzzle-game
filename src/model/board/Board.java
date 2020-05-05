@@ -3,6 +3,7 @@ package model.board;
 import java.awt.Graphics;
 import java.util.List;
 
+import controller.BoardController;
 import controller.IBoardController;
 import model.interfaces.Drawable;
 
@@ -14,28 +15,35 @@ public class Board implements Drawable {
     private final Drawable view;
     private final IBoardController controller;
     
-    public Board(List<PuzzlePiece> puzzlePieces, List<Integer> ordering, IBoardController controller) {
+    public Board(final List<PuzzlePiece> puzzlePieces, final List<Integer> ordering, final int missing) {
         this.puzzlePieces = puzzlePieces;
         this.ordering = ordering;
-        this.controller = controller;
+        controller = new BoardController(this, missing);
         view = new BoardView(puzzlePieces);
         checker = new Checker();
     }
 
-    public IBoardController getController() {
-        return controller;
-    }
-
-    public void swapPieces(int i, int j) {
-        PuzzlePiece pi = this.puzzlePieces.get(i);
-        PuzzlePiece pj = this.puzzlePieces.get(j);
-        PuzzlePiece copy = pi.getClone();
-        pi.swap(pj);
-        pj.swap(copy);
-    }
-
     public void draw(Graphics g) {
         view.draw(g);
+    }
+
+    public void logBoard() {
+        for (int i=0; i < 9; i++) {
+            System.out.print( puzzlePieces.get(i).getPieceNumber() );
+            System.out.print(" ");
+            if ((i+1) % 3 ==0) System.out.println();
+        }
+    }
+
+    public PuzzlePiece locate(int i) {
+        for (PuzzlePiece p : puzzlePieces) {
+            if (p.isAt(i)) return p;
+        }
+        return null;
+    }
+
+    public IBoardController getController() {
+        return controller;
     }
 
     public boolean isGameFinished() {
@@ -71,11 +79,10 @@ public class Board implements Drawable {
         private boolean isGameFinished() {
             for (int i = 0; i < 9; i++) {
                 final int pieceIdentifier = puzzlePieces.get(i).getPieceNumber();
-                System.out.println(i+ ", "+ "holding: "+pieceIdentifier);
-                if (pieceIdentifier == 8) {
+                if (pieceIdentifier == 0) {
                     continue;
                 }
-                if (pieceIdentifier != i) {
+                if (pieceIdentifier != i+1) {
                     return false;
                 }
             }

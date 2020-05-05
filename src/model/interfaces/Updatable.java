@@ -1,5 +1,7 @@
 package model.interfaces;
 
 public interface Updatable <T> {
-    void update(T t);
+    default void update(T t){
+        //do nothing
+    }
 }

@@ -1,17 +1,15 @@
 package util.config;
 
-import java.util.Map;
-
 import util.image.ImageLoader;
-
 import java.awt.Image;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class ConfigFactory {
     
-    List<Image> images;
-    ArrayList<Integer> piecesOrdering;
+    private final List<Image> images;
+    private final ArrayList<Integer> piecesOrdering;
 
     public ConfigFactory(Map <String, List <String> > map) {
         piecesOrdering = new ArrayList<>();

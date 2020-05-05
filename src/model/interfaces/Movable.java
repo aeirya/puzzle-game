@@ -1,9 +1,11 @@
 package model.interfaces;
 
 public interface Movable {
+    
+    void move(int i);
     void moveVertically(int i);
     void moveHorizontally(int i);
-    
+
     default void moveUp() { 
         moveVertically(-1);
     }

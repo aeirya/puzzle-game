@@ -25,6 +25,10 @@ public class Location {
         this.y = y;
     }
 
+    public int toInt() {
+        return x + 3 * y;
+    }
+
     public String toString() {
         return "(" + x + " , " + y + ")";
     }

@@ -64,6 +64,7 @@ public class SwingGraphics implements IGameGraphics {
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setSizes();
         frame.add(panel);
+        frame.setBackground(new java.awt.Color(50,50,50));
         frame.setVisible(true);
     }
 
