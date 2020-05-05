@@ -14,7 +14,7 @@ public class Config {
         this.piecesOrdering = (ArrayList<Integer>) piecesOrdering;
     }
 
-    public List<Image> getImageFiles() {
+    public List<Image> getImages() {
         return images;
     }
 

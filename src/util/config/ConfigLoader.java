@@ -7,14 +7,17 @@ import util.file.FileLoader;
 
 public class ConfigLoader extends FileLoader {
 
-    private static final String DEFAULT_CONFIG_PATH = "src/resources/config/config.txt";
     private static final List<String> keys = List.of("initial ordering", "image files");
     private final IParser parser = new ConfigParser();
     private static ConfigLoader loader = null;
     private Config config;
 
     private ConfigLoader() {
-        super(DEFAULT_CONFIG_PATH);
+        this("src/resources/config/config.txt");
+    }
+
+    private ConfigLoader(String configPath) {
+        super(configPath);
         loadConfig();
     }
 

@@ -1,6 +1,8 @@
+package model;
 
 public class Location {
-    private int x, y;
+    private int x;
+    private int y;
 
     public Location(int x, int y) {
         this.x = x;
@@ -21,5 +23,9 @@ public class Location {
 
     public void setY(int y) {
         this.y = y;
+    }
+
+    public String toString() {
+        return "(" + x + " , " + y + ")";
     }
 }
