@@ -15,14 +15,14 @@ public class SwingGraphics implements IGameGraphics {
     private final JFrame frame;
     private final JPanel panel;
     private final Prompter prompter;
-    protected Drawable drawable;
+    private Drawable drawable;
 
     public SwingGraphics() {
         frame = new JFrame();  
         panel = new JPanel() {
             private static final long serialVersionUID = 1L;
             @Override
-            public void paintComponent(Graphics g) {
+            public void paintComponent(final Graphics g) {
                 super.printComponents(g);
                 draw(g);
             }
@@ -31,19 +31,18 @@ public class SwingGraphics implements IGameGraphics {
         setup();
     }
 
-    public void prompt(String msg, String title, int type) {
+    public void prompt(final String msg, final String title, final int type) {
         prompter.prompt(msg, title, type);
     }
 
-    public void update(Drawable drawable) {
+    public void update(final Drawable drawable) {
         this.drawable = drawable;
-        EventQueue.invokeLater( 
-                this::repaint
-            );
+        EventQueue.invokeLater(this::repaint);
     }
-    
-    protected void draw(Graphics g) {
-        if (drawable != null) drawable.draw(g);
+
+    protected void draw(final Graphics g) {
+        if (drawable != null)
+            drawable.draw(g);
     }
 
     protected void repaint() {
@@ -55,7 +54,7 @@ public class SwingGraphics implements IGameGraphics {
         initiateFrame();
     }
 
-    public void addKeyListener(KeyListener listener) {
+    public void addKeyListener(final KeyListener listener) {
         frame.addKeyListener(listener);
     }
 
@@ -64,15 +63,15 @@ public class SwingGraphics implements IGameGraphics {
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setSizes();
         frame.add(panel);
-        frame.setBackground(new java.awt.Color(50,50,50));
+        frame.setBackground(new java.awt.Color(50, 50, 50));
         frame.setVisible(true);
     }
 
     private void setSizes() {
-        Dimension size = IGameGraphics.getScreenSize();
+        final Dimension size = IGameGraphics.getScreenSize();
         panel.setSize(size);
         frame.setSize(panel.getSize());
-        int maxSize = Math.max(size.width, size.height) / 3;
+        final int maxSize = Math.max(size.width, size.height) / 3;
         panel.setLocation(size.width / 2 - maxSize / 2, size.height / 2 - maxSize / 2);
     }
 }

@@ -11,7 +11,7 @@ public class ConfigFactory {
     private final List<Image> images;
     private final ArrayList<Integer> piecesOrdering;
 
-    public ConfigFactory(Map <String, List <String> > map) {
+    public ConfigFactory(final Map<String, List<String>> map) {
         piecesOrdering = new ArrayList<>();
         map.get("initial ordering")
             .forEach( 

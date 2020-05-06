@@ -10,11 +10,11 @@ public class BoardView implements Drawable {
 
     List<Drawable> list = new ArrayList<>();
 
-    public <T extends Drawable> BoardView(List<T> list) {
+    public <T extends Drawable> BoardView(final List<T> list) {
         list.forEach(this.list::add);
     }
 
-    public void draw(Graphics g) {
+    public void draw(final Graphics g) {
         list.forEach(d->d.draw(g));
     }
     

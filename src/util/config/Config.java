@@ -6,10 +6,10 @@ import java.awt.Image;
 
 public class Config {
     
-    List<Image> images;
-    ArrayList<Integer> piecesOrdering;
+    private final List<Image> images;
+    private final ArrayList<Integer> piecesOrdering;
 
-    public Config(List<Image> images, List<Integer> piecesOrdering) {
+    public Config(final List<Image> images, final List<Integer> piecesOrdering) {
         this.images = images;
         this.piecesOrdering = (ArrayList<Integer>) piecesOrdering;
     }

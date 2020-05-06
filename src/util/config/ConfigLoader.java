@@ -16,23 +16,24 @@ public class ConfigLoader extends FileLoader {
         this("src/resources/config/config.txt");
     }
 
-    private ConfigLoader(String configPath) {
+    private ConfigLoader(final String configPath) {
         super(configPath);
         loadConfig();
     }
 
     private static ConfigLoader getInstance() {
-        if (loader == null) loader = new ConfigLoader();
+        if (loader == null)
+            loader = new ConfigLoader();
         return loader;
     }
 
     public static Config getConfig() {
         return getInstance().config;
     }
-    
+
     private void loadConfig() {
-        List <String> lines = load();
-        Map <String, List <String> > map = parser.parse(keys, lines);
+        final List<String> lines = load();
+        final Map<String, List<String>> map = parser.parse(keys, lines);
         config = new ConfigFactory(map).generate();
     }
 }

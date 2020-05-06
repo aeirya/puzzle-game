@@ -13,18 +13,18 @@ public class FileLoader implements IFileLoader<String> {
 
     private final String filename;
 
-    public FileLoader(String filename) {
+    public FileLoader(final String filename) {
         this.filename = filename;
     }
 
     public List<String> load() {
-        List<String> content = new ArrayList<>();
+        final List<String> content = new ArrayList<>();
         try (BufferedReader bf = new BufferedReader(getReader())) {
             String line;
             while ((line = bf.readLine()) != null) {
                 content.add(line);
             }
-        } catch (Exception ex) {
+        } catch (final Exception ex) {
             Logger.getLogger(getClass().getName()).warning(ex.toString());
         }
         return content;

@@ -23,21 +23,23 @@ public class Board implements Drawable {
         checker = new Checker();
     }
 
-    public void draw(Graphics g) {
+    public void draw(final Graphics g) {
         view.draw(g);
     }
 
     public void logBoard() {
-        for (int i=0; i < 9; i++) {
-            System.out.print( puzzlePieces.get(i).getPieceNumber() );
+        for (int i = 0; i < 9; i++) {
+            System.out.print(puzzlePieces.get(i).getPieceNumber());
             System.out.print(" ");
-            if ((i+1) % 3 ==0) System.out.println();
+            if ((i + 1) % 3 == 0)
+                System.out.println();
         }
     }
 
-    public PuzzlePiece locate(int i) {
-        for (PuzzlePiece p : puzzlePieces) {
-            if (p.isAt(i)) return p;
+    public PuzzlePiece locate(final int i) {
+        for (final PuzzlePiece p : puzzlePieces) {
+            if (p.isAt(i))
+                return p;
         }
         return null;
     }
@@ -55,7 +57,7 @@ public class Board implements Drawable {
     }
 
     private class Checker {
-        
+
         private boolean isSolvable() {
             final int missingPiece = getMissingPiece();
             int inversionCount = 0;
@@ -67,7 +69,7 @@ public class Board implements Drawable {
                 }
             }
             int parity = inversionCount % 2;
-            int  distanceOfMissingPiece = (2 - (missingPiece % 3)) + (2 - (missingPiece / 3));
+            final int distanceOfMissingPiece = (2 - (missingPiece % 3)) + (2 - (missingPiece / 3));
             parity ^= (distanceOfMissingPiece % 2);
             return (parity == 0);
         }

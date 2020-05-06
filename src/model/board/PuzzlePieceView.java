@@ -14,17 +14,17 @@ public class PuzzlePieceView implements Drawable {
     protected Image image;
     protected Location loc;
 
-    public PuzzlePieceView(Image image, Location loc) {
-        this.image = image; 
+    public PuzzlePieceView(final Image image, final Location loc) {
+        this.image = image;
         this.loc = loc;
     }
 
     protected Dimension getSize() {
         final Dimension size = IGameGraphics.getScreenSize();
-        return new Dimension(size.width/3, size.height/3);
+        return new Dimension(size.width / 3, size.height / 3);
     }
 
-    public void draw(Graphics g) {
+    public void draw(final Graphics g) {
         final Graphics2D g2 = (Graphics2D) g;
         g2.setColor(new java.awt.Color(10,10,10));
         g2.setStroke(new BasicStroke(4));

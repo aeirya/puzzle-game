@@ -10,49 +10,43 @@ import javax.imageio.ImageIO;
 
 public class ImageLoader implements IFileLoader<Image> {
 
-    private String prefix;
+    private final String prefix;
     private List<String> filenames;
 
     public ImageLoader() {
         this("src/resources/assets/");
     }
 
-    public ImageLoader(String assetsPath) {
+    public ImageLoader(final String assetsPath) {
         this.prefix = assetsPath;
     }
 
-    public ImageLoader provideImageNames(List<String> filenames) {
+    public ImageLoader provideImageNames(final List<String> filenames) {
         this.filenames = filenames;
         return this;
     }
 
     public List<Image> load() {
-        Image[] result = new Image[9];
-        filenames.forEach(
-            path ->
-                result [n(path)] = readImage(prefix + path)
-            );
+        final Image[] result = new Image[9];
+        filenames.forEach(path -> result[n(path)] = readImage(prefix + path));
 
         return Arrays.asList(result);
     }
 
     /** finds the number of the piece */
-    private int n(String path) {
+    private int n(final String path) {
         try {
-            return Integer.parseInt( path.split("\\.")[0] );
-        }
-        catch(Exception ex) {
-            return 0; //should be careful in case we want to change the missing piece *
+            return Integer.parseInt(path.split("\\.")[0]);
+        } catch (final Exception ex) {
+            return 0;
         }
     }
 
-    private Image readImage(String filename) {
+    private Image readImage(final String filename) {
         try {
-            File file = new File(filename);
-            return ImageIO.read(
-                file
-            );
-        } catch(IOException ex) {
+            final File file = new File(filename);
+            return ImageIO.read(file);
+        } catch (final IOException ex) {
             return null;
         }
     }

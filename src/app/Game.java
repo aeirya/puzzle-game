@@ -8,13 +8,11 @@ import util.config.ConfigLoader;
 
 public class Game {
     
-    private GameController controller;
-    private final Board board;
     private boolean isFinished = false;
+    private GameController controller;
 
     public Game(Board board) {
-        this.board = board;
-        start();
+        controller = new GameController(this, board);
         update();
     }
 
@@ -22,10 +20,6 @@ public class Game {
         Config config = ConfigLoader.getConfig(); //singleton
         Board board = BoardFactory.getInstance().provide(config).build();
         new Game(board);
-    }
-
-    private void start() {
-        controller = new GameController(this, board);
     }
 
     private void update() {

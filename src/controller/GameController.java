@@ -8,23 +8,21 @@ import ui.SwingGraphics;
 import ui.prompter.MsgType;
 
 
-public class GameController {
+public class GameController implements IController {
     
     private final IGameGraphics graphics;
     private final Game game;
     private final Board board;
 
-    public GameController(Game game, Board board) {
+    public GameController(final Game game, final Board board) {
         this.board = board;
         graphics = new SwingGraphics();
-        graphics.addKeyListener(
-            new MyKeyListener(board.getController())
-        );
+        graphics.addKeyListener(new MyKeyListener(board.getController()));
         this.game = game;
         check(board);
     }
-    
-    private void check(Board board) {
+
+    private void check(final Board board) {
         if (!board.isSolvable()) {
             graphics.prompt(
                 "this puzzle is not solvable, change your config and try again",

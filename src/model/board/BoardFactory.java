@@ -17,15 +17,15 @@ public class BoardFactory {
         return factory;
     }
 
-    public BoardFactory provide(Config config) {
+    public BoardFactory provide(final Config config) {
         this.config = config;
         this.missingPiece = findMissingPiece();
         return this;
     }
-    
+
     public Board build() {
-        PuzzlePieceFactory pf = new PuzzlePieceFactory(config);
-        ArrayList<PuzzlePiece> puzzlePieces = new ArrayList<>();
+        final PuzzlePieceFactory pf = new PuzzlePieceFactory(config);
+        final ArrayList<PuzzlePiece> puzzlePieces = new ArrayList<>();
         for (int i = 0; i < 9; i++) {
             if (i != missingPiece) {
                 puzzlePieces.add(pf.buildPuzzlePiece(i));
@@ -33,7 +33,7 @@ public class BoardFactory {
                 puzzlePieces.add(pf.build(missingPiece, 0));
             }
         }
-        List<Integer> order = config.getInitialOrdering();
+        final List<Integer> order = config.getInitialOrdering();
         return new Board(puzzlePieces, order, missingPiece);
     }
 
